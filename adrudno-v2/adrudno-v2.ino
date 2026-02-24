@@ -338,6 +338,7 @@ void processBLECommand() {
   
   // Check valid command format: %X#
   if (bleValue.length() <= 4) {
+    Serial.println(bleValue);
 
     if (bleValue.charAt(0) == '%') {
       
@@ -350,62 +351,60 @@ void processBLECommand() {
       }
       
       char command = bleValue.charAt(1);
-
-      Serial.println(command);
       
       switch(command) {
         case 'H':
           moveServoUp(4);
-          bleValue = "";
+          // bleValue = "";
           break;
         case 'G':
           moveServoDown(4);
-          bleValue = "";
+          // bleValue = "";
           break;
         case 'F':
           if (!isInMotion) {
             startMotion('f', 400);
-            bleValue = "";
+            // bleValue = "";
           }
           break;
         case 'B':
           if (!isInMotion) {
             startMotion('b', 400);
-            bleValue = "";
+            // bleValue = "";
           }
           break;
         case 'L':
           if (!isInMotion) {
             startMotion('l', 250);
-            bleValue = "";
+            // bleValue = "";
           }
           break;
         case 'R':
           if (!isInMotion) {
             startMotion('r', 250);
-            bleValue = "";
+            // bleValue = "";
           }
           break;
         case 'T':
           activeMode = 'T';
-          bleValue = "";
+          // bleValue = "";
           break;
         case 'A':
           activeMode = 'A';
-          bleValue = "";
+          // bleValue = "";
           break;
         case 'Z':
           activeMode = 'Z';
-          bleValue = "";
+          // bleValue = "";
           break;
         case 'S':
           stopMotors();
           activeMode = ' ';
           isInMotion = false;
-          bleValue = "";
+          // bleValue = "";
           break;
         default:
-          bleValue = "";
+          // bleValue = "";
           break;
       }
     }

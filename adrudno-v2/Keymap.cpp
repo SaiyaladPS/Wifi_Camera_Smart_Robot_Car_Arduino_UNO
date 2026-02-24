@@ -1,4 +1,4 @@
-#include "Keymap.h"
+#include "keymap.h"
 ST_KEY_MAP normal_ir_keymap[18] = {
 	{"1", 0x16},
     {"2", 0x19},
