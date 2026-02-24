@@ -168,8 +168,8 @@ void ultrasonicAvoidance() {
     if (frontDistance <= 10) {
       moveBackward(100);
       avoidanceTimer = millis();
-      avoidanceState = 1;
-    } 
+      avoidanceState = 1;  
+    }  
     else if (frontDistance > 10 && frontDistance <= 20) {
       // Random turn
       if (random(1, 100) >= 50) {
@@ -299,7 +299,7 @@ void irRemoteControl() {
   
   // Check for new IR input
   int key = ir.getIrKey(ir.getCode(), 1);
-  
+
   if (key == IR_KEYCODE_UP) {
     irCarMode = 'f';
     irModeFlag = true;
@@ -338,7 +338,8 @@ void processBLECommand() {
   
   // Check valid command format: %X#
   if (bleValue.length() <= 4) {
-    if (bleValue.charAt(0) == '%' && bleValue.charAt(bleValue.length() - 1) == '#') {
+
+    if (bleValue.charAt(0) == '%') {
       
       // Stop IR mode if BLE command received
       if (irModeFlag == true) {
@@ -349,6 +350,8 @@ void processBLECommand() {
       }
       
       char command = bleValue.charAt(1);
+
+      Serial.println(command);
       
       switch(command) {
         case 'H':
@@ -450,8 +453,9 @@ void loop() {
   // Read Bluetooth data (non-blocking)
   while (Serial.available() > 0) {
     bleValueTemp += (char)Serial.read();
+
     delay(2);
-    
+  
     if (!Serial.available()) {
       bleValue = bleValueTemp;
       bleValueTemp = "";
