@@ -355,11 +355,11 @@ void processBLECommand() {
       switch(command) {
         case 'H':
           moveServoUp(4);
-          // bleValue = "";
+          bleValue = "";
           break;
         case 'G':
           moveServoDown(4);
-          // bleValue = "";
+          bleValue = "";
           break;
         case 'F':
           if (!isInMotion) {
